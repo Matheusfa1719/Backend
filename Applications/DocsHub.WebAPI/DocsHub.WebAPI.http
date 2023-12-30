@@ -1,0 +1,6 @@
+@DocsHub.WebAPI_HostAddress = http://localhost:5248
+
+GET {{DocsHub.WebAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
