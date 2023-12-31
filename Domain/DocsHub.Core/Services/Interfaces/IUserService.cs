@@ -5,6 +5,7 @@ namespace DocsHub.Core.Services.Interfaces
     public interface IUserService
     {
         Task<User> GetUserByIdAsync(Guid id);
-        Task<User> CreateUserAsync(User user);
+        Task<Result<User>> CreateUserAsync(User user);
+        Task<bool> UserExistsAsync(string email);
     }
 }

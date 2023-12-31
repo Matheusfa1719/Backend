@@ -1,6 +1,7 @@
 using DocsHub.Core.Models;
 using DocsHub.Core.Repositories.Interfaces;
 using DocsHub.Infra.Database;
+using Microsoft.EntityFrameworkCore;
 
 namespace DocsHub.Infrastructure.Database.Repositories
 {
@@ -18,6 +19,12 @@ namespace DocsHub.Infrastructure.Database.Repositories
             _context.Users.Add(user);
             await _context.SaveChangesAsync();
 
+            return user;
+        }
+
+        public Task<User?> GetByEmailAsync(string email)
+        {
+            var user = _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             return user;
         }
     }

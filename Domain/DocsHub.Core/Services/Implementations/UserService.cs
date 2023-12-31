@@ -27,14 +27,25 @@ namespace DocsHub.Core.Services
             return Task.FromResult(user);
         }
 
-        public async Task<User> CreateUserAsync(User user)
+        public async Task<Result<User>> CreateUserAsync(User user)
         {
+            var userExists = await UserExistsAsync(user.Email);
+            if (userExists)
+            {
+                return Result<User>.Fail("Usuário já existe");
+            }
             user.Id = Guid.NewGuid();
             user.CreatedAt = DateTime.UtcNow;
             user.UpdatedAt = DateTime.UtcNow;
 
             user = await _userRepository.AddAsync(user);
-            return user;
+            return Result<User>.Ok(user);
+        }
+
+        public async Task<bool> UserExistsAsync(string email)
+        {
+            var user = await _userRepository.GetByEmailAsync(email);
+            return user != null;
         }
     }
 }
