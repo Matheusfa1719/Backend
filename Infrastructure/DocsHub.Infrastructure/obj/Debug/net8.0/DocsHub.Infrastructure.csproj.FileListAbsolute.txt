@@ -15,3 +15,4 @@ C:\Users\mathe\workspace\Docs\Backend\Infrastructure\DocsHub.Infrastructure\obj\
 C:\Users\mathe\workspace\Docs\Backend\Infrastructure\DocsHub.Infrastructure\obj\Debug\net8.0\ref\DocsHub.Infrastructure.dll
 C:\Users\mathe\workspace\Docs\Backend\Infrastructure\DocsHub.Infrastructure\bin\Debug\net8.0\DocsHub.Infrastructure.runtimeconfig.json
 C:\Users\mathe\workspace\Docs\Backend\Infrastructure\DocsHub.Infrastructure\obj\Debug\net8.0\DocsHub.Infrastructure.genruntimeconfig.cache
+C:\Users\mathe\workspace\Docs\Backend\Infrastructure\DocsHub.Infrastructure\obj\Debug\net8.0\DocsHub.Infrastructure.sourcelink.json

@@ -9,3 +9,4 @@ C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsH
 C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\refint\DocsHub.Core.dll
 C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsHub.Core.pdb
 C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\ref\DocsHub.Core.dll
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsHub.Core.sourcelink.json

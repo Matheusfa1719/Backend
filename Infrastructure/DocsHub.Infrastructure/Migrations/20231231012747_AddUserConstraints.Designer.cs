@@ -3,6 +3,7 @@ using System;
 using DocsHub.Infra.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -11,9 +12,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace DocsHub.Infrastructure.Migrations
 {
     [DbContext(typeof(DocsHubPgContext))]
-    partial class DocsHubPgContextModelSnapshot : ModelSnapshot
+    [Migration("20231231012747_AddUserConstraints")]
+    partial class AddUserConstraints
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

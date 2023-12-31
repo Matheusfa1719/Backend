@@ -140,3 +140,4 @@ C:\Users\mathe\workspace\Docs\Backend\Applications\DocsHub.WebAPI\bin\Debug\net8
 C:\Users\mathe\workspace\Docs\Backend\Applications\DocsHub.WebAPI\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\mathe\workspace\Docs\Backend\Applications\DocsHub.WebAPI\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
 C:\Users\mathe\workspace\Docs\Backend\Applications\DocsHub.WebAPI\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\mathe\workspace\Docs\Backend\Applications\DocsHub.WebAPI\obj\Debug\net8.0\DocsHub.WebAPI.sourcelink.json
