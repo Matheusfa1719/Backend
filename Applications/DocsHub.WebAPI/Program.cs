@@ -1,4 +1,12 @@
+using DocsHub.Core.Services;
+using DocsHub.Core.Services.Interfaces;
+using DocsHub.WebAPI;
+
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddControllers();
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
 
 // Add services to the container.
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

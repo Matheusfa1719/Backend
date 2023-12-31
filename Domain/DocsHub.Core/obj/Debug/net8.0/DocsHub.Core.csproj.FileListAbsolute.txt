@@ -1,0 +1,11 @@
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\bin\Debug\net8.0\DocsHub.Core.deps.json
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\bin\Debug\net8.0\DocsHub.Core.dll
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\bin\Debug\net8.0\DocsHub.Core.pdb
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsHub.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsHub.Core.AssemblyInfoInputs.cache
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsHub.Core.AssemblyInfo.cs
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsHub.Core.csproj.CoreCompileInputs.cache
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsHub.Core.dll
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\refint\DocsHub.Core.dll
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\DocsHub.Core.pdb
+C:\Users\mathe\workspace\Docs\Backend\Domain\DocsHub.Core\obj\Debug\net8.0\ref\DocsHub.Core.dll

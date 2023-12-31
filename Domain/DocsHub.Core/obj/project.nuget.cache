@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kT2hroShOgOdWl6zc16DWxSGwqWN12Ks4azxLz+TF/AzPphB9s3p9/v+JbOHYlKEYk4GitbaUfhxdeOJQ5QL2A==",
+  "dgSpecHash": "FujmLp+Uf5oJhdKn1bNMJJTzka+4LBFFArKqi3pfAobehkJYq9qNYolS7qVJqgAJywB6QPmNjyuLbETRRnoimQ==",
   "success": true,
-  "projectFilePath": "/workspaces/Backend/Domain/DocsHub.Core/DocsHub.Core.csproj",
+  "projectFilePath": "C:\\Users\\mathe\\workspace\\Docs\\Backend\\Domain\\DocsHub.Core\\DocsHub.Core.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
