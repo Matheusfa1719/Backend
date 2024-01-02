@@ -1,3 +1,4 @@
+using DocsHub.Core.Common;
 using DocsHub.Core.Models;
 using DocsHub.Core.Services.Interfaces;
 using DocsHub.WebAPI.Dtos;
@@ -23,9 +24,9 @@ namespace DocsHub.WebAPI.Controllers
 
         // GET api/users
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public async Task<ActionResult<PagedList<User>>> GetAsync([FromQuery] int pageIndex = 1, [FromQuery] int pageSize = 10)
         {
-            return new string[] { "user1", "user2" };
+            return await _userService.GetAllUsersAsync(pageIndex, pageSize);
         }
 
         // GET api/users/5

@@ -1,3 +1,4 @@
+using DocsHub.Core.Common;
 using DocsHub.Core.Models;
 
 namespace DocsHub.Core.Repositories.Interfaces
@@ -6,5 +7,6 @@ namespace DocsHub.Core.Repositories.Interfaces
     {
         Task<User> AddAsync(User user);
         Task<User?> GetByEmailAsync(string email);
+         Task<PagedList<User>> GetAllUsersAsync(int pageIndex, int pageSize);
     }
 }

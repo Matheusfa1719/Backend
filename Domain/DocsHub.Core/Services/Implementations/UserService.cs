@@ -1,3 +1,4 @@
+using DocsHub.Core.Common;
 using DocsHub.Core.Models;
 using DocsHub.Core.Repositories.Interfaces;
 using DocsHub.Core.Services.Interfaces;
@@ -8,7 +9,8 @@ namespace DocsHub.Core.Services
     {
         private readonly IUserRepository _userRepository;
 
-        public UserService(IUserRepository userRepository) {
+        public UserService(IUserRepository userRepository)
+        {
             _userRepository = userRepository;
         }
 
@@ -46,6 +48,11 @@ namespace DocsHub.Core.Services
         {
             var user = await _userRepository.GetByEmailAsync(email);
             return user != null;
+        }
+
+        public Task<PagedList<User>> GetAllUsersAsync(int pageIndex, int pageSize)
+        {
+            return _userRepository.GetAllUsersAsync(pageIndex, pageSize);
         }
     }
 }

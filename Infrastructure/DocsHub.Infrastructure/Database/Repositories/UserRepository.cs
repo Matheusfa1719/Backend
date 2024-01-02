@@ -1,3 +1,4 @@
+using DocsHub.Core.Common;
 using DocsHub.Core.Models;
 using DocsHub.Core.Repositories.Interfaces;
 using DocsHub.Infra.Database;
@@ -26,6 +27,17 @@ namespace DocsHub.Infrastructure.Database.Repositories
         {
             var user = _context.Users.FirstOrDefaultAsync(u => u.Email == email);
             return user;
+        }
+
+        public async Task<PagedList<User>> GetAllUsersAsync(int pageIndex, int pageSize)
+        {
+            var totalRecords = await _context.Users.CountAsync();
+            var users = await _context.Users
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            return new PagedList<User>(users, totalRecords, pageIndex, pageSize);
         }
     }
 }
