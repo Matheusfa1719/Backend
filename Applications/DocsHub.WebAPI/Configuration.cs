@@ -1,8 +1,10 @@
+using DocsHub.Core.Models;
 using DocsHub.Core.Repositories.Interfaces;
 using DocsHub.Core.Services;
 using DocsHub.Core.Services.Interfaces;
 using DocsHub.Infra.Database;
 using DocsHub.Infrastructure.Database.Repositories;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace DocsHub.WebAPI
@@ -12,6 +14,7 @@ namespace DocsHub.WebAPI
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
             return services;
         }
 

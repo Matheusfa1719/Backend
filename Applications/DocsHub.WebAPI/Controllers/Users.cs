@@ -2,6 +2,7 @@ using DocsHub.Core.Models;
 using DocsHub.Core.Services.Interfaces;
 using DocsHub.WebAPI.Dtos;
 using DocsHub.WebAPI.Dtos.User;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DocsHub.WebAPI.Controllers
@@ -11,10 +12,12 @@ namespace DocsHub.WebAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IPasswordHasher<User> _passwordHasher;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IPasswordHasher<User> passwordHasher)
         {
             _userService = userService;
+            _passwordHasher = passwordHasher;
         }
 
         // GET api/users
@@ -44,6 +47,7 @@ namespace DocsHub.WebAPI.Controllers
             };
 
             //TODO: Validar dados de entrada e salvar senha encryptada no banco de dados
+            user.Password = _passwordHasher.HashPassword(user, user.Password);
             var userResult = await _userService.CreateUserAsync(user);
             if (userResult.IsError)
             {
