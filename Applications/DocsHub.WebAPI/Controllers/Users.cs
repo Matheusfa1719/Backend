@@ -2,6 +2,7 @@ using DocsHub.Core.Models;
 using DocsHub.Core.Services.Interfaces;
 using DocsHub.WebAPI.Dtos;
 using DocsHub.WebAPI.Dtos.User;
+using DocsHub.WebAPI.Validators;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,15 @@ namespace DocsHub.WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] CreateUserDto newUser)
         {
+            var validator = new CreateUserDtoValidator();
+            var validationResult = await validator.ValidateAsync(newUser);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
+                return BadRequest(new ApiResponse<List<string>> { Success = false, StatusCode = 400, Message = "Validation errors", Data = errors });
+            }
+
             var user = new User
             {
                 Name = newUser.Name,
@@ -46,21 +56,21 @@ namespace DocsHub.WebAPI.Controllers
                 Role = newUser.Role
             };
 
-            //TODO: Validar dados de entrada e salvar senha encryptada no banco de dados
+            //TODO: Validar dados de entrada
             user.Password = _passwordHasher.HashPassword(user, user.Password);
             var userResult = await _userService.CreateUserAsync(user);
             if (userResult.IsError)
             {
-                return BadRequest(new ApiResponse<User> { Success = false, StatusCode = 400, Message = userResult.Error});
-            }
-            
-            if (userResult.Value == null)
-            {
-                return BadRequest(new ApiResponse<User> { Success = false, StatusCode = 400, Message = "Erro ao criar usuário"});
+                return BadRequest(new ApiResponse<User> { Success = false, StatusCode = 400, Message = userResult.Error });
             }
 
-            userResult.Value.Password = ""; 
-            return Ok(new ApiResponse<User> { Success = true, StatusCode = 200, Message = "Usuário cadastrado com sucesso!",Data = userResult.Value });
+            if (userResult.Value == null)
+            {
+                return BadRequest(new ApiResponse<User> { Success = false, StatusCode = 400, Message = "Erro ao criar usuário" });
+            }
+
+            userResult.Value.Password = "";
+            return Ok(new ApiResponse<User> { Success = true, StatusCode = 200, Message = "Usuário cadastrado com sucesso!", Data = userResult.Value });
         }
 
         // PUT api/users/5
