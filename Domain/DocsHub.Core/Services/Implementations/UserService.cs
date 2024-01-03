@@ -1,3 +1,4 @@
+using System.Linq;
 using DocsHub.Core.Common;
 using DocsHub.Core.Models;
 using DocsHub.Core.Repositories.Interfaces;
@@ -14,19 +15,10 @@ namespace DocsHub.Core.Services
             _userRepository = userRepository;
         }
 
-        public Task<User> GetUserByIdAsync(Guid id)
+        public async Task<User?> GetUserByIdAsync(Guid id)
         {
-            var user = new User
-            {
-                Id = Guid.NewGuid(),
-                Email = "teste@gmail.com",
-                Password = "123456",
-                Name = "Teste",
-                Role = Enums.UserRole.Admin,
-                CreatedAt = DateTime.UtcNow,
-                UpdatedAt = DateTime.UtcNow,
-            };
-            return Task.FromResult(user);
+            var user = await _userRepository.GetUserByIdAsync(id);
+            return user;
         }
 
         public async Task<Result<User>> CreateUserAsync(User user)
@@ -50,9 +42,21 @@ namespace DocsHub.Core.Services
             return user != null;
         }
 
-        public Task<PagedList<User>> GetAllUsersAsync(int pageIndex, int pageSize)
+        public async Task<PagedList<User>> GetAllUsersAsync(int pageIndex, int pageSize)
         {
-            return _userRepository.GetAllUsersAsync(pageIndex, pageSize);
+            var users = await _userRepository.GetAllUsersAsync(pageIndex, pageSize);
+            var mappedUsers = users.Items.Select(user => new User
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                Password = "",
+                Role = user.Role,
+                CreatedAt = user.CreatedAt,
+                UpdatedAt = user.UpdatedAt
+            }).ToList();
+
+            return new PagedList<User>(mappedUsers, users.TotalCount, users.PageIndex, users.PageSize);
         }
     }
 }

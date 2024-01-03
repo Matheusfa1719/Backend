@@ -33,7 +33,14 @@ namespace DocsHub.WebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<User>> GetAsync(Guid id)
         {
-            return await _userService.GetUserByIdAsync(id);
+            var user = await _userService.GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return NotFound(new ApiResponse<User> { Success = false, StatusCode = 404, Message = "Usuário não encontrado" });
+            }
+
+            user.Password = "";
+            return Ok(user);
         }
 
         // POST api/users

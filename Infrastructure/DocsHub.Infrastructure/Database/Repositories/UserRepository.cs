@@ -39,5 +39,11 @@ namespace DocsHub.Infrastructure.Database.Repositories
 
             return new PagedList<User>(users, totalRecords, pageIndex, pageSize);
         }
+
+        public async Task<User?> GetUserByIdAsync(Guid id)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            return user;
+        }
     }
 }
