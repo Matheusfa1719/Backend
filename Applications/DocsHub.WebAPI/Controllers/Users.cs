@@ -89,8 +89,22 @@ namespace DocsHub.WebAPI.Controllers
 
         // DELETE api/users/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(Guid id)
         {
+            var deleteUserResult = await _userService.DeleteUserByIdAsync(id);
+            if (deleteUserResult.IsError)
+            {
+                if (deleteUserResult.Error == "Usuário não encontrado")
+                {
+                    return NotFound(new ApiResponse<User> { Success = false, StatusCode = 404, Message = "Usuário não encontrado" });
+                }
+                else
+                {
+                    return BadRequest(new ApiResponse<User> { Success = false, StatusCode = 400, Message = deleteUserResult.Error });
+                }
+            }
+
+            return NoContent();
         }
     }
 }

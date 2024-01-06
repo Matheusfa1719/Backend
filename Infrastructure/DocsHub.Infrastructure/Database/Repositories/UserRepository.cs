@@ -45,5 +45,11 @@ namespace DocsHub.Infrastructure.Database.Repositories
             var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
             return user;
         }
+
+        public async Task DeleteUserByIdAsync(User user)
+        {
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+        }
     }
 }

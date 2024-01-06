@@ -58,5 +58,16 @@ namespace DocsHub.Core.Services
 
             return new PagedList<User>(mappedUsers, users.TotalCount, users.PageIndex, users.PageSize);
         }
+
+        public async Task<Result<User>> DeleteUserByIdAsync(Guid id)
+        {
+            var user = await GetUserByIdAsync(id);
+            if (user == null)
+            {
+                return Result<User>.Fail("Usuário não encontrado");
+            }
+            await _userRepository.DeleteUserByIdAsync(user);
+            return Result<User>.Ok(user);
+        }
     }
 }
