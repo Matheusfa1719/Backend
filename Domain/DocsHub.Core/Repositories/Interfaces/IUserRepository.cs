@@ -10,5 +10,6 @@ namespace DocsHub.Core.Repositories.Interfaces
          Task<PagedList<User>> GetAllUsersAsync(int pageIndex, int pageSize);
          Task<User?> GetUserByIdAsync(Guid id);
         Task DeleteUserByIdAsync(User user);
+        Task<User> UpdateUserAsync(User user);
     }
 }

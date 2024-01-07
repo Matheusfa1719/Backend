@@ -69,5 +69,22 @@ namespace DocsHub.Core.Services
             await _userRepository.DeleteUserByIdAsync(user);
             return Result<User>.Ok(user);
         }
+
+        public async Task<Result<User>> UpdateUserAsync(User user)
+        {
+            var existingUser = await GetUserByIdAsync(user.Id);
+            if (existingUser == null)
+            {
+                return Result<User>.Fail("Usuário não encontrado");
+            }
+
+            existingUser.Name = user.Name;
+            existingUser.Email = user.Email;
+            existingUser.Role = user.Role;
+            existingUser.UpdatedAt = DateTime.UtcNow;
+
+            await _userRepository.UpdateUserAsync(existingUser);
+            return Result<User>.Ok(existingUser);
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace DocsHub.Core.Services.Interfaces
         Task<bool> UserExistsAsync(string email);
         Task<PagedList<User>> GetAllUsersAsync(int pageIndex, int pageSize);
         Task<Result<User>> DeleteUserByIdAsync(Guid id);
+        Task<Result<User>> UpdateUserAsync(User user);
     }
 }

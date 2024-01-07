@@ -64,7 +64,6 @@ namespace DocsHub.WebAPI.Controllers
                 Role = newUser.Role
             };
 
-            //TODO: Validar dados de entrada
             user.Password = _passwordHasher.HashPassword(user, user.Password);
             var userResult = await _userService.CreateUserAsync(user);
             if (userResult.IsError)
@@ -83,8 +82,39 @@ namespace DocsHub.WebAPI.Controllers
 
         // PUT api/users/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<ActionResult> PutAsync(Guid id, [FromBody] UpdateUserDto updatedUserDto)
         {
+            var validator = new UpdateUserDtoValidator();
+            var validationResult = await validator.ValidateAsync(updatedUserDto);
+
+            if (!validationResult.IsValid)
+            {
+                var errors = validationResult.Errors.Select(error => error.ErrorMessage).ToList();
+                return BadRequest(new ApiResponse<List<string>> { Success = false, StatusCode = 400, Message = "Validation errors", Data = errors });
+            }
+
+            var user = new User
+            {
+                Id = id,
+                Name = updatedUserDto.Name,
+                Email = updatedUserDto.Email,
+                Role = updatedUserDto.Role,
+            };
+
+            var updateUserResult = await _userService.UpdateUserAsync(user);
+            if (updateUserResult.IsError)
+            {
+                if (updateUserResult.Error == "Usuário não encontrado")
+                {
+                    return NotFound(new ApiResponse<User> { Success = false, StatusCode = 404, Message = "Usuário não encontrado" });
+                }
+                else
+                {
+                    return BadRequest(new ApiResponse<User> { Success = false, StatusCode = 400, Message = updateUserResult.Error });
+                }
+            }
+
+            return Ok(new ApiResponse<User> { Success = true, StatusCode = 200, Message = "Usuário atualizado com sucesso!", Data = updateUserResult.Value });
         }
 
         // DELETE api/users/5
