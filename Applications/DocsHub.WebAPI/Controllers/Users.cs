@@ -77,7 +77,8 @@ namespace DocsHub.WebAPI.Controllers
             }
 
             userResult.Value.Password = "";
-            return Ok(new ApiResponse<User> { Success = true, StatusCode = 200, Message = "Usuário cadastrado com sucesso!", Data = userResult.Value });
+            Response.Headers.Append("X-Resource-Id", userResult.Value.Id.ToString());
+            return CreatedAtAction("POST", new ApiResponse<User> { Success = true, StatusCode = 201, Message = "Usuário criado com sucesso!", Data = userResult.Value });
         }
 
         // PUT api/users/5
