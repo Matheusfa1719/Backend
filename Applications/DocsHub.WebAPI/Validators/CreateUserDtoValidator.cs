@@ -14,6 +14,6 @@ public class CreateUserDtoValidator : AbstractValidator<CreateUserDto> {
         RuleFor(x => x.Password).NotEmpty().WithMessage("A senha é obrigatória")
         .Length(6, 100).WithMessage("A senha deve ter entre 6 e 20 caracteres");
 
-        RuleFor(x => x.Role).IsInEnum().WithMessage("O perfil é obrigatório");
+        RuleFor(x => x.Role).IsInEnum().WithMessage("Informe um perfil válido");
     }
 }
